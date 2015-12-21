@@ -15,9 +15,9 @@ namespace WindowsFormsApplication1.Presentation
 
     class MockPresenter
     {
-        private EmailGenerator view;
+        private EmailGenerator_v view;
 
-        public MockPresenter(EmailGenerator view)
+        public MockPresenter(EmailGenerator_v view)
         {
             this.view = view;
             this.view.pressButton += interaction;

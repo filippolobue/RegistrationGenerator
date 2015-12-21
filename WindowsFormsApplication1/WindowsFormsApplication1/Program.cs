@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using WindowsFormsApplication1.persistence;
 using WindowsFormsApplication1.Presentation;
+using WindowsFormsApplication1;
 
-namespace WindowsFormsApplication1
+namespace EmailGeneration
 {
     static class Program
     {
@@ -38,7 +39,7 @@ namespace WindowsFormsApplication1
             //mml.GetMock(); mml.GetMock(); mml.GetMock(); mml.GetMock();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            EmailGenerator mainView = new EmailGenerator();
+            EmailGenerator_v mainView = new EmailGenerator_v();
             MockPresenter mp = new MockPresenter(mainView);
             Application.Run(mainView);
         }

@@ -11,11 +11,11 @@ using WindowsFormsApplication1.Presentation;
 
 namespace WindowsFormsApplication1
 {
-    public partial class EmailGenerator : Form
+    public partial class EmailGenerator_v : Form
     {
         public event EventHandler pressButton;
 
-        public EmailGenerator()
+        public EmailGenerator_v()
         {
             InitializeComponent();
             

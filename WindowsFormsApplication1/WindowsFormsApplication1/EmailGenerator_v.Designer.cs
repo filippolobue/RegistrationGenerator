@@ -1,6 +1,6 @@
 ﻿namespace WindowsFormsApplication1
 {
-    partial class EmailGenerator
+    partial class EmailGenerator_v
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EmailGenerator));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EmailGenerator_v));
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.contextMenuStrip2 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.asdasdToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -107,7 +107,7 @@
             // 
             // langEng
             // 
-            this.langEng.Image = global::WindowsFormsApplication1.Properties.Resources.tick;
+            this.langEng.Image = global::EmailGenerator.Properties.Resources.tick;
             this.langEng.Name = "langEng";
             this.langEng.Size = new System.Drawing.Size(181, 26);
             this.langEng.Text = "English";

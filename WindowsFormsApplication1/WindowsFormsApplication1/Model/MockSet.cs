@@ -8,13 +8,16 @@ namespace WindowsFormsApplication1.Model
 { 
     public class MockSet<T> where T : Mock
     {
+        public delegate void delegateQV(int n);
+        public event delegateQV quasiVuoto;
+
         protected HashSet<T> mockSet;
         protected static readonly HashSet<T> emptyMockSet = new HashSet<T>();
         private int numbersMock;
 
         public MockSet()
         {
-            this.numbersMock = 10;
+            this.numbersMock = 3; //10 è di Default
             this.mockSet = emptyMockSet;
         }
 
@@ -43,7 +46,15 @@ namespace WindowsFormsApplication1.Model
 
             if (!this.List.Contains(m))
             {
-                this.mockSet.Add(m);
+                if(this.Lenght() < this.NumbersMock)
+                {
+                    this.mockSet.Add(m);
+                    //Console.WriteLine("[MockSet] inserito un Mock nel Set");
+                }
+                else
+                {
+                    Console.WriteLine("[MockSet] impossibile inserire il Mock perchè è già pieno");
+                }
             }
         }
         
@@ -54,15 +65,15 @@ namespace WindowsFormsApplication1.Model
                 throw new ArgumentNullException("mock == null");
             #endregion
 
-            Console.WriteLine("devo eliminare: " + m.ToString());
+            //Console.WriteLine("devo eliminare: " + m.ToString());
 
             T item = null;
             foreach (T mock in this.mockSet)
             {
-                Console.WriteLine("ciclo: " + mock.ToString());
+                //Console.WriteLine("ciclo: " + mock.ToString());
                 if (mock.Equals(m))
                 {
-                    Console.WriteLine("trovato-elimino");
+                    //Console.WriteLine("trovato-elimino");
                     item = mock;
                     mockSet.Remove(item);
                     break;
@@ -88,12 +99,24 @@ namespace WindowsFormsApplication1.Model
 
             T ret = this.mockSet.First();
             Remove(ret);
+
+            if(this.Lenght()<(this.numbersMock/2))
+            {
+                if (quasiVuoto != null)
+                    quasiVuoto(this.Lenght());
+            }
+
             return ret;
         }
 
         public int Lenght()
         {
             return this.mockSet.ToArray().Length;
+        }
+
+        public bool isFull()
+        {
+            return (this.Lenght() == this.NumbersMock);
         }
     }
 }

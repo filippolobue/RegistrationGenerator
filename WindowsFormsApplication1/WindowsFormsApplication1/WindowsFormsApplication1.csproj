@@ -46,19 +46,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form1.cs">
+    <Compile Include="EmailGenerator.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="EmailGenerator.Designer.cs">
+      <DependentUpon>EmailGenerator.cs</DependentUpon>
     </Compile>
     <Compile Include="Model\Email.cs" />
+    <Compile Include="Model\Document.cs" />
+    <Compile Include="persistence\IModelPersister.cs" />
     <Compile Include="Model\Mock.cs" />
     <Compile Include="Model\MockSet.cs" />
+    <Compile Include="persistence\ModelPersister.cs" />
+    <Compile Include="Presentation\MockPresenter.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <EmbeddedResource Include="EmailGenerator.resx">
+      <DependentUpon>EmailGenerator.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -82,9 +86,13 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="Presentation\" />
-    <Folder Include="Resources\" />
+    <Content Include="Resources\eng_fname.txt" />
+    <Content Include="Resources\eng_lname.txt" />
+    <Content Include="Resources\eng_mname.txt" />
+    <Content Include="Resources\eng_places.txt" />
+    <Content Include="Resources\prop.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

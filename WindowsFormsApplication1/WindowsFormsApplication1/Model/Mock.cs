@@ -14,23 +14,42 @@ namespace WindowsFormsApplication1.Model
         private readonly int age;
         private readonly string password;
         private readonly string email;
+        private readonly string city;
 
-        public Mock(string f, string m, string l, int a, string p)
+        private Random rnd;
+
+        public Mock(string f, string m, string l, int a, string p, string c, Random rnd)
         {
             this.firstName = f;
             this.middleName = m;
             this.lastName = l;
             this.age = a;
             this.password = p;
+            this.city = c;
             this.email = this.generateEmail();
+            this.rnd = rnd;
         }
 
-        public Mock(string f, string m, string l, int a)
+        public Mock(string f, string m, string l, int a, string p, string c)
         {
             this.firstName = f;
             this.middleName = m;
             this.lastName = l;
             this.age = a;
+            this.password = p;
+            this.city = c;
+            this.email = this.generateEmail();
+            this.rnd = new Random((int)DateTime.Now.Ticks);
+        }
+
+        public Mock(string f, string m, string l, int a, string c, Random rnd)
+        {
+            this.firstName = f;
+            this.middleName = m;
+            this.lastName = l;
+            this.age = a;
+            this.rnd = rnd;
+            this.city = c;
             this.password = this.generatePassword(8);
             this.email = this.generateEmail();
         }
@@ -43,7 +62,10 @@ namespace WindowsFormsApplication1.Model
 
         public string MiddleName
         {
-            get { return this.middleName; }
+            get {
+                if (this.middleName == null)
+                    return "";
+                return this.middleName; }
         }
 
         public string LastName
@@ -65,6 +87,11 @@ namespace WindowsFormsApplication1.Model
         {
             get { return this.email; }
         }
+
+        public string City
+        {
+            get { return this.city; }
+        }
         // -----------------------------------------------
 
         private string generateEmail()
@@ -81,21 +108,20 @@ namespace WindowsFormsApplication1.Model
                     ret = ret + this.Age + "@";
 
                 Array values = Enum.GetValues(typeof(Email));
-                Random random = new Random();
-                Email em = (Email)values.GetValue(random.Next(values.Length));
+                Email em = (Email)values.GetValue(this.rnd.Next(values.Length));
 
                 ret = ret + em.ToString().ToLower() + ".com";
             }
             else ret = null;
 
-            Console.WriteLine(ret);
+            //Console.WriteLine(ret);
             return ret;
         }
 
         // genera una parola di lunghezza requestedLength con le prime due lettere maiuscole e almeno due cifre
         private string generatePassword(int requestedLength)
         {
-            Random rnd = new Random();
+            //int Seed = (int)DateTime.Now.Ticks;
             string[] consonants = { "b", "c", "d", "f", "g", "h", "j", "k", "l", "m", "n", "p", "q", "r", "s", "t", "v", "w", "x", "y", "z" };
             string[] vowels = { "a", "e", "i", "o", "u" };
             string[] numbers = { "1", "2", "3", "4", "5", "6", "7", "8", "9", "0"};
@@ -103,20 +129,20 @@ namespace WindowsFormsApplication1.Model
 
             if (requestedLength == 1)
             {
-                word = GetRandomLetter(rnd, vowels).ToUpper();
+                word = GetRandomLetter(this.rnd, vowels).ToUpper();
             }
             else
             {
-                word += GetRandomLetter(rnd, consonants).ToUpper() + GetRandomLetter(rnd, consonants).ToUpper();
-                word += GetRandomLetter(rnd, numbers) + GetRandomLetter(rnd, numbers);
+                word += GetRandomLetter(this.rnd, consonants).ToUpper() + GetRandomLetter(this.rnd, consonants).ToUpper();
+                word += GetRandomLetter(this.rnd, numbers) + GetRandomLetter(this.rnd, numbers);
                 for (int i = 4; i < requestedLength; i += 2)
                 {
-                    word += GetRandomLetter(rnd, consonants) + GetRandomLetter(rnd, vowels);
+                    word += GetRandomLetter(this.rnd, consonants) + GetRandomLetter(this.rnd, vowels);
                 }
 
                 word = word.Substring(0, requestedLength); // We may generate a string longer than requested length, but it doesn't matter if cut off the excess.
             }
-            Console.WriteLine(word);
+           // Console.WriteLine(word);
             return word;
         }
 

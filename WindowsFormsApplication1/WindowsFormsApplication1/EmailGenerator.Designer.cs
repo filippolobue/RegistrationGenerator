@@ -29,14 +29,15 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.statusProgressBar = new System.Windows.Forms.ToolStripProgressBar();
-            this.statusLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EmailGenerator));
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.contextMenuStrip2 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.asdasdToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.menu = new System.Windows.Forms.MenuStrip();
             this.proprietToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.languageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.langEng = new System.Windows.Forms.ToolStripMenuItem();
+            this.langIta = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.developedLabel = new System.Windows.Forms.Label();
             this.emailB = new System.Windows.Forms.Button();
@@ -51,34 +52,9 @@
             this.passwordLabel = new System.Windows.Forms.Label();
             this.ageLabel = new System.Windows.Forms.Label();
             this.placeLabel = new System.Windows.Forms.Label();
-            this.statusStrip1.SuspendLayout();
             this.contextMenuStrip2.SuspendLayout();
-            this.menuStrip1.SuspendLayout();
+            this.menu.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // statusStrip1
-            // 
-            this.statusStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.statusProgressBar,
-            this.statusLabel});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 276);
-            this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(542, 25);
-            this.statusStrip1.TabIndex = 0;
-            this.statusStrip1.Text = "statusStrip1";
-            // 
-            // statusProgressBar
-            // 
-            this.statusProgressBar.Margin = new System.Windows.Forms.Padding(10, 3, 8, 3);
-            this.statusProgressBar.Name = "statusProgressBar";
-            this.statusProgressBar.Size = new System.Drawing.Size(150, 19);
-            // 
-            // statusLabel
-            // 
-            this.statusLabel.Name = "statusLabel";
-            this.statusLabel.Size = new System.Drawing.Size(47, 20);
-            this.statusLabel.Text = "status";
             // 
             // contextMenuStrip1
             // 
@@ -100,23 +76,48 @@
             this.asdasdToolStripMenuItem.Size = new System.Drawing.Size(130, 26);
             this.asdasdToolStripMenuItem.Text = "asdasd";
             // 
-            // menuStrip1
+            // menu
             // 
-            this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menu.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.menu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.proprietToolStripMenuItem,
             this.toolStripMenuItem1});
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(542, 28);
-            this.menuStrip1.TabIndex = 2;
-            this.menuStrip1.Text = "menuStrip1";
+            this.menu.Location = new System.Drawing.Point(0, 0);
+            this.menu.Name = "menu";
+            this.menu.Size = new System.Drawing.Size(542, 28);
+            this.menu.TabIndex = 2;
+            this.menu.Text = "menuStrip1";
             // 
             // proprietToolStripMenuItem
             // 
+            this.proprietToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.languageToolStripMenuItem});
             this.proprietToolStripMenuItem.Name = "proprietToolStripMenuItem";
-            this.proprietToolStripMenuItem.Size = new System.Drawing.Size(89, 24);
-            this.proprietToolStripMenuItem.Text = "properties";
+            this.proprietToolStripMenuItem.Size = new System.Drawing.Size(88, 24);
+            this.proprietToolStripMenuItem.Text = "Properties";
+            // 
+            // languageToolStripMenuItem
+            // 
+            this.languageToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.langEng,
+            this.langIta});
+            this.languageToolStripMenuItem.Name = "languageToolStripMenuItem";
+            this.languageToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
+            this.languageToolStripMenuItem.Text = "language";
+            // 
+            // langEng
+            // 
+            this.langEng.Image = global::WindowsFormsApplication1.Properties.Resources.tick;
+            this.langEng.Name = "langEng";
+            this.langEng.Size = new System.Drawing.Size(181, 26);
+            this.langEng.Text = "English";
+            // 
+            // langIta
+            // 
+            this.langIta.Name = "langIta";
+            this.langIta.Size = new System.Drawing.Size(181, 26);
+            this.langIta.Text = "Italian";
+            this.langIta.Click += new System.EventHandler(this.langIta_Click);
             // 
             // toolStripMenuItem1
             // 
@@ -126,13 +127,13 @@
             // 
             // developedLabel
             // 
-            this.developedLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.developedLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.developedLabel.AutoSize = true;
             this.developedLabel.BackColor = System.Drawing.Color.Transparent;
-            this.developedLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.developedLabel.Location = new System.Drawing.Point(265, 277);
+            this.developedLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.developedLabel.Location = new System.Drawing.Point(-4, 281);
             this.developedLabel.Name = "developedLabel";
-            this.developedLabel.Size = new System.Drawing.Size(254, 24);
+            this.developedLabel.Size = new System.Drawing.Size(223, 20);
             this.developedLabel.TabIndex = 4;
             this.developedLabel.Text = "Developed by Filippo Lo Bue";
             // 
@@ -282,32 +283,26 @@
             this.Controls.Add(this.fnameB);
             this.Controls.Add(this.emailB);
             this.Controls.Add(this.developedLabel);
-            this.Controls.Add(this.statusStrip1);
-            this.Controls.Add(this.menuStrip1);
+            this.Controls.Add(this.menu);
             this.HelpButton = true;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximumSize = new System.Drawing.Size(560, 500);
             this.MinimumSize = new System.Drawing.Size(55, 348);
             this.Name = "EmailGenerator";
             this.Text = "EmailGenerator";
-            this.statusStrip1.ResumeLayout(false);
-            this.statusStrip1.PerformLayout();
             this.contextMenuStrip2.ResumeLayout(false);
-            this.menuStrip1.ResumeLayout(false);
-            this.menuStrip1.PerformLayout();
+            this.menu.ResumeLayout(false);
+            this.menu.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.StatusStrip statusStrip1;
-        private System.Windows.Forms.ToolStripProgressBar statusProgressBar;
-        private System.Windows.Forms.ToolStripStatusLabel statusLabel;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip2;
         private System.Windows.Forms.ToolStripMenuItem asdasdToolStripMenuItem;
-        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.MenuStrip menu;
         private System.Windows.Forms.ToolStripMenuItem proprietToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
         private System.Windows.Forms.Label developedLabel;
@@ -323,5 +318,8 @@
         private System.Windows.Forms.Label passwordLabel;
         private System.Windows.Forms.Label ageLabel;
         private System.Windows.Forms.Label placeLabel;
+        private System.Windows.Forms.ToolStripMenuItem languageToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem langIta;
+        public System.Windows.Forms.ToolStripMenuItem langEng;
     }
 }

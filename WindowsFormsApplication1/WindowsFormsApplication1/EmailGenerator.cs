@@ -18,6 +18,7 @@ namespace WindowsFormsApplication1
         public EmailGenerator()
         {
             InitializeComponent();
+            
         }
 
         private void emailB_Click(object sender, EventArgs e)
@@ -90,6 +91,18 @@ namespace WindowsFormsApplication1
         public void changeCityLabel(String str)
         {
             this.placeLabel.Text = str;
+        }
+
+        private void langIta_Click(object sender, EventArgs e)
+        {
+            WorkInProgress wip = new WorkInProgress();
+            wip.TopMost = true;
+            if (wip.ShowDialog(this) == DialogResult.OK)
+            {
+                // Read the contents of testDialog's TextBox.
+                //this.txtResult.Text = testDialog.TextBox1.Text;
+            }
+            wip.Dispose();
         }
     }
 }

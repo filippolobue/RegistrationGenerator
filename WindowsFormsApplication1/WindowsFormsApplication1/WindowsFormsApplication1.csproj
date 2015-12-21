@@ -61,6 +61,12 @@
     <Compile Include="Presentation\MockPresenter.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WorkInProgress.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WorkInProgress.Designer.cs">
+      <DependentUpon>WorkInProgress.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="EmailGenerator.resx">
       <DependentUpon>EmailGenerator.cs</DependentUpon>
     </EmbeddedResource>
@@ -72,7 +78,11 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="WorkInProgress.resx">
+      <DependentUpon>WorkInProgress.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -93,6 +103,7 @@
     <Content Include="Resources\eng_mname.txt" />
     <Content Include="Resources\eng_places.txt" />
     <Content Include="Resources\prop.txt" />
+    <None Include="Resources\tick.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
